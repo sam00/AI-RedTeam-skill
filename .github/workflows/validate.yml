@@ -1,0 +1,31 @@
+name: validate
+
+# Validates data integrity and UI script syntax. Uses only GitHub-native
+# actions and runtimes preinstalled on the runner.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON data files
+        run: |
+          for f in data/*.json; do
+            python3 -m json.tool "$f" > /dev/null && echo "OK $f"
+          done
+
+      - name: Check UI JavaScript syntax
+        run: node --check ui/app.js && echo "OK ui/app.js"
+
+      - name: Guard against secrets / committed env files
+        run: |
+          if git ls-files | grep -E '(\.env($|\.)|\.pem$|\.key$|^credentials)'; then
+            echo "::error::Potential secret or credential file committed"; exit 1
+          fi
+          echo "No secret-like files tracked."

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Red Team Skill — Technique &amp; Framework Mapper</title>
+  <meta name="description" content="Offensive-security technique catalog mapped to MITRE ATT&CK, MITRE ATLAS, OWASP, OWASP LLM Top 10, and NIST AI RMF. Documentation only." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">⛨</span>
+      <div>
+        <h1>AI Red Team Skill</h1>
+        <p class="tagline">Technique &amp; framework mapper · documentation only</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <input id="search" type="search" placeholder="Search techniques, tools, IDs…" aria-label="Search" />
+      <button id="tab-techniques" class="tab active" data-view="techniques">Techniques</button>
+      <button id="tab-tools" class="tab" data-view="tools">Tools</button>
+      <button id="findings-btn" class="btn-accent" title="Open findings tray">
+        Findings <span id="findings-count" class="badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="safety-banner" role="note">
+    For <strong>authorized</strong> offensive security work only. This tool is reference &amp; planning material — it does not scan, exploit, or attack anything.
+  </div>
+
+  <main class="layout">
+    <aside class="filters" aria-label="Filters">
+      <section>
+        <h2>Domain</h2>
+        <div id="filter-domains" class="chips"></div>
+      </section>
+      <section>
+        <h2>Kill-chain phase</h2>
+        <div id="filter-phases" class="chips"></div>
+      </section>
+      <section>
+        <h2>Framework</h2>
+        <div id="filter-frameworks" class="chips"></div>
+      </section>
+      <button id="clear-filters" class="btn-ghost">Clear filters</button>
+      <p class="result-count"><span id="result-count">0</span> results</p>
+    </aside>
+
+    <section class="content">
+      <div id="grid" class="grid" aria-live="polite"></div>
+      <div id="empty" class="empty hidden">No matches. Adjust filters or search.</div>
+    </section>
+  </main>
+
+  <!-- Detail drawer -->
+  <div id="drawer" class="drawer hidden" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-inner">
+      <button id="drawer-close" class="drawer-close" aria-label="Close">×</button>
+      <div id="drawer-body"></div>
+    </div>
+  </div>
+
+  <!-- Findings tray -->
+  <div id="tray" class="tray hidden" role="dialog" aria-modal="true" aria-labelledby="tray-title">
+    <div class="tray-inner">
+      <div class="tray-head">
+        <h2 id="tray-title">Findings draft</h2>
+        <button id="tray-close" class="drawer-close" aria-label="Close">×</button>
+      </div>
+      <p class="muted">Built from the finding template. Export to Markdown, then complete severity, evidence (defanged, no secrets), and status.</p>
+      <div id="tray-list" class="tray-list"></div>
+      <div class="tray-actions">
+        <button id="export-md" class="btn-accent">Export Markdown</button>
+        <button id="copy-md" class="btn-ghost">Copy to clipboard</button>
+        <button id="clear-findings" class="btn-ghost danger">Clear all</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay hidden"></div>
+
+  <footer class="footer">
+    <span>Frameworks: MITRE ATT&amp;CK · MITRE ATLAS · OWASP Top 10 · OWASP LLM Top 10 (2025) · NIST AI RMF</span>
+    <span id="data-status" class="muted">loading data…</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

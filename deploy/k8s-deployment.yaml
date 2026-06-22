@@ -1,0 +1,74 @@
+# AI Red Team Skill — Kubernetes manifests (Deployment + Service).
+#
+# Prereqs: build the image, then make it available to your cluster.
+#   docker build -t ai-redteam-skill:latest -f deploy/Dockerfile .
+#   # minikube:  minikube image load ai-redteam-skill:latest
+#   # kind:      kind load docker-image ai-redteam-skill:latest
+#   # or push to your registry and update the image: field below.
+#
+# Apply:        kubectl apply -f deploy/k8s-deployment.yaml
+# Access:       kubectl port-forward svc/ai-redteam-skill 8080:80
+#               open http://localhost:8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-redteam-skill
+  labels:
+    app: ai-redteam-skill
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-redteam-skill
+  template:
+    metadata:
+      labels:
+        app: ai-redteam-skill
+    spec:
+      containers:
+        - name: web
+          image: ai-redteam-skill:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "32Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 20
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop: ["ALL"]
+              add: ["NET_BIND_SERVICE"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-redteam-skill
+  labels:
+    app: ai-redteam-skill
+spec:
+  type: ClusterIP
+  selector:
+    app: ai-redteam-skill
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80

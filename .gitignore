@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor / OS
+*.swp
+*~
+
+# Node (if contributors add tooling)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Python (if contributors add tooling)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local engagement artifacts — NEVER commit real data
+engagements/
+*.local.json
+*.local.md
+scope/
+loot/
+*.pcap
+*.kdbx
+
+# Secrets — defense in depth (no secrets belong in this repo)
+.env
+.env.*
+*.pem
+*.key
+credentials*

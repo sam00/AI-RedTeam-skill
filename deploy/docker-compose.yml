@@ -1,0 +1,17 @@
+services:
+  ai-redteam-skill:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: ai-redteam-skill:latest
+    container_name: ai-redteam-skill
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    security_opt:
+      - no-new-privileges:true
