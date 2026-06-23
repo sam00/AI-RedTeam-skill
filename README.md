@@ -23,6 +23,7 @@ plan engagements and write findings consistently.
 | **Identity — Okta / SSO** | SAML/OIDC abuse, MFA fatigue, session theft, IdP federation |
 | **Social Engineering** | Vishing, phishing, pretexting, malicious chatbots |
 | **AI / LLM Security** | Prompt injection, jailbreaks, RAG poisoning, agent/tool abuse |
+| **Engagement playbooks (2025–26)** | EDR/XDR evasion, MFA-protected identity compromise, cloud privesc, zero-trust lateral movement, OPSEC, business-impact, purple team |
 
 Every technique is mapped to **MITRE ATT&CK**, **MITRE ATLAS**, **OWASP Top 10**,
 **OWASP LLM Top 10 (2025)**, and **NIST AI RMF**, and ships with a **recommendation**
@@ -32,6 +33,11 @@ and **credible reference**.
 explains the AI Red Team engineer's approach, the AI systems and attacker models
 used, the tooling stack, and the engagement workflow. To author or extend the
 skill, see [`guides/authoring-skills.md`](guides/authoring-skills.md).
+
+**Solving the hardest 2025–26 challenges** — EDR/XDR evasion, MFA-protected
+identity compromise, cloud privesc, zero-trust lateral movement, OPSEC, and
+proving business impact: see
+[`guides/engagement-playbooks.md`](guides/engagement-playbooks.md).
 
 ---
 

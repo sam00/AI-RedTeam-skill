@@ -57,6 +57,7 @@
     "cis-k8s": "https://www.cisecurity.org/benchmark/kubernetes",
     "k8s-pss": "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
     "okta-sec": "https://help.okta.com/",
+    "entra-sec": "https://learn.microsoft.com/en-us/entra/identity/",
     "cisa-mfa": "https://www.cisa.gov/resources-tools/resources/implementing-phishing-resistant-mfa",
     "cisa-phishing": "https://www.cisa.gov/topics/cyber-threats-and-advisories/phishing",
     "kali-tools": "https://www.kali.org/tools/",

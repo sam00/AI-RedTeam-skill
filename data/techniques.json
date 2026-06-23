@@ -453,6 +453,127 @@
       "tools": ["promptfoo", "deepteam"],
       "recommendation": "Grounding with citations, confidence signals, human review for high-stakes use.",
       "references": ["owasp-llm", "nist-ai-rmf"]
+    },
+    {
+      "id": "AWS-PRIV-002",
+      "name": "Cross-account role assumption / confused deputy",
+      "domain": "cloud-aws",
+      "phase": "privilege-escalation",
+      "description": "Assume an over-trusting cross-account IAM role to pivot between AWS accounts or tenants.",
+      "frameworks": { "attack": ["T1078.004", "T1199"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": ["pacu", "cloudfox"],
+      "recommendation": "Scope trust policies with ExternalId and aws:PrincipalOrgID; least-privilege sts:AssumeRole; alert on cross-account AssumeRole.",
+      "references": ["aws-iam", "aws-sra"]
+    },
+    {
+      "id": "HYB-PRIV-002",
+      "name": "Entra/Azure managed identity & service principal abuse",
+      "domain": "hybrid-infrastructure",
+      "phase": "privilege-escalation",
+      "description": "Abuse app registrations, service principals, or managed identities (added credentials, API permissions) to escalate in Entra ID/Azure.",
+      "frameworks": { "attack": ["T1078.004", "T1098.001"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": ["azurehound", "roadtools"],
+      "recommendation": "Restrict who can add app credentials/owners; review high-privilege Graph permissions; alert on new service principal credentials.",
+      "references": ["entra-sec", "mitre-attack"]
+    },
+    {
+      "id": "HYB-CRED-003",
+      "name": "Hybrid identity sync abuse (Entra Connect / PHS / PTA)",
+      "domain": "hybrid-infrastructure",
+      "phase": "credential-access",
+      "description": "Abuse the directory-sync server or sync account (PHS, Pass-through Auth, Seamless SSO) to harvest or forge credentials across on-prem and cloud.",
+      "frameworks": { "attack": ["T1556.007", "T1078.004"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": ["azurehound", "roadtools"],
+      "recommendation": "Treat the sync server and sync account as Tier 0; protect/rotate their secrets; monitor sync-account sign-ins and PTA agent changes.",
+      "references": ["entra-sec", "mitre-attack"]
+    },
+    {
+      "id": "HYB-LAT-002",
+      "name": "Zero-trust lateral movement via identity & SaaS",
+      "domain": "hybrid-infrastructure",
+      "phase": "lateral-movement",
+      "description": "Move via stolen tokens, OAuth grants, and SaaS/cloud trust instead of network pivoting in segmented/zero-trust networks.",
+      "frameworks": { "attack": ["T1550.001", "T1199", "T1078"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": ["azurehound", "roadtools"],
+      "recommendation": "Continuous access evaluation, device-trust + token binding, least-privilege OAuth scopes, alert on token reuse from new locations/devices.",
+      "references": ["entra-sec", "mitre-attack"]
+    },
+    {
+      "id": "HYB-EVADE-001",
+      "name": "EDR/XDR & behavioral detection evasion",
+      "domain": "hybrid-infrastructure",
+      "phase": "defense-evasion",
+      "description": "Blend with legitimate behavior and tamper with sensors to avoid EDR/XDR, UEBA, and threat-hunting detection.",
+      "frameworks": { "attack": ["T1562.001", "T1027", "T1497", "T1070"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": [],
+      "recommendation": "Enable tamper protection; layer behavioral/ML detections and proactive threat hunting; deploy honeytokens; protect and centralize log integrity.",
+      "references": ["mitre-attack", "nist-800-53"]
+    },
+    {
+      "id": "HYB-C2-001",
+      "name": "Resilient C2 & traffic obfuscation (OPSEC)",
+      "domain": "hybrid-infrastructure",
+      "phase": "command-and-control",
+      "description": "Use redirectors, encrypted channels, and legitimate-looking traffic to resist attribution and detection of command and control.",
+      "frameworks": { "attack": ["T1071.001", "T1090.004", "T1573"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": [],
+      "recommendation": "Egress filtering and TLS inspection; JA3/JARM and domain-age analytics; block newly registered domains; beacon/jitter analytics.",
+      "references": ["mitre-attack", "nist-800-53"]
+    },
+    {
+      "id": "OKTA-IA-002",
+      "name": "Illicit OAuth consent grant / app abuse",
+      "domain": "identity-okta",
+      "phase": "initial-access",
+      "description": "Trick a user into consenting to a malicious OAuth app to obtain persistent token-based access without a password.",
+      "frameworks": { "attack": ["T1528", "T1566.002"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": [],
+      "recommendation": "Restrict user consent, require admin-consent workflow, review risky/over-scoped grants, alert on new third-party app authorizations.",
+      "references": ["okta-sec", "entra-sec"]
+    },
+    {
+      "id": "OKTA-EVADE-001",
+      "name": "Conditional Access policy bypass",
+      "domain": "identity-okta",
+      "phase": "defense-evasion",
+      "description": "Exploit gaps in Conditional Access (legacy auth, device/location exclusions, weak rules) to sign in without expected controls.",
+      "frameworks": { "attack": ["T1078", "T1556"], "atlas": [], "owasp": ["A07"], "owaspLlm": [], "nist": [] },
+      "tools": ["roadtools"],
+      "recommendation": "Block legacy authentication, remove broad exclusions, require compliant/managed devices, enable continuous access evaluation, report-only test before enforce.",
+      "references": ["okta-sec", "cisa-mfa"]
+    },
+    {
+      "id": "OKTA-PRIV-001",
+      "name": "PIM / Just-In-Time privileged role abuse",
+      "domain": "identity-okta",
+      "phase": "privilege-escalation",
+      "description": "Activate or manipulate eligible privileged roles (PIM/JIT) to gain admin rights with minimal approval friction.",
+      "frameworks": { "attack": ["T1098.003", "T1078"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": ["azurehound"],
+      "recommendation": "Require approver + MFA + justification and time-boxing for activation; alert on every privileged activation; least-privilege eligible assignments.",
+      "references": ["entra-sec", "mitre-attack"]
+    },
+    {
+      "id": "SE-IA-002",
+      "name": "Deepfake-assisted vishing / executive impersonation",
+      "domain": "social-engineering",
+      "phase": "initial-access",
+      "description": "Use AI voice/video cloning to impersonate executives or IT for high-trust requests (authorized simulation).",
+      "frameworks": { "attack": ["T1656", "T1598", "T1585"], "atlas": [], "owasp": [], "owaspLlm": [], "nist": [] },
+      "tools": [],
+      "recommendation": "Out-of-band callback verification and code words for payments/resets; dual control for high-risk actions; awareness training on AI voice/video cloning.",
+      "references": ["cisa-phishing", "nist-800-53"]
+    },
+    {
+      "id": "AI-PRIV-002",
+      "name": "AI agent hijacking (memory / indirect injection)",
+      "domain": "ai-llm",
+      "phase": "privilege-escalation",
+      "description": "Steer an autonomous agent off-task via poisoned memory or injected tool/RAG content to perform attacker-chosen actions.",
+      "frameworks": { "attack": [], "atlas": ["AML.T0051.001", "AML.T0053"], "owasp": [], "owaspLlm": ["LLM01", "LLM06"], "nist": ["Manage"] },
+      "tools": ["pyrit", "deepteam", "promptfoo"],
+      "recommendation": "Isolate per-session memory, validate tool plans, require human approval for state-changing actions, sign/verify tool I/O, constrain tool scopes.",
+      "references": ["owasp-llm", "atlas"]
     }
   ]
 }

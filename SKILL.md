@@ -50,6 +50,7 @@ context usage minimal (progressive disclosure).
 | If the task involves...                          | Read this file |
 |--------------------------------------------------|----------------|
 | AI red team approach, models used, methodology   | `domains/ai-red-team-engineer.md` |
+| Hardest engagement challenges & solutions (2025–26)| `guides/engagement-playbooks.md` |
 | Web/API/mobile app testing                       | `domains/application-security.md` |
 | AWS accounts, IAM, S3, EKS, Lambda               | `domains/cloud-aws.md` |
 | GCP projects, IAM, GCS, GKE, service accounts    | `domains/cloud-gcp.md` |
@@ -79,6 +80,7 @@ context usage minimal (progressive disclosure).
 | Credible references & citations       | `recommendations/references.md` |
 | Finding write-up template             | `recommendations/remediation-playbook.md` (Finding template) |
 | Author / extend skills & playbooks    | `guides/authoring-skills.md` |
+| Solve the hardest engagement challenges| `guides/engagement-playbooks.md` |
 
 ### Structured data (single source of truth, also powers the UI)
 
