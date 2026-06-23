@@ -8,6 +8,8 @@
 attack anything. It is a reference + UI you share with security engineers to
 plan engagements and write findings consistently.
 
+![AI Red Team Skill — technique & framework mapper UI](docs/screenshot.png)
+
 ---
 
 ## What's inside
