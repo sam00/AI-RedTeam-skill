@@ -8,7 +8,39 @@
 attack anything. It is a reference + UI you share with security engineers to
 plan engagements and write findings consistently.
 
+**[▶ Live demo](https://sam00.github.io/AI-RedTeam-skill/ui/)** · **[Methodology](domains/ai-red-team-engineer.md)** · **[Engagement playbooks (2025–26)](guides/engagement-playbooks.md)**
+
 ![AI Red Team Skill — technique & framework mapper UI](docs/screenshot.png)
+
+---
+
+## Why use this?
+
+**The problem it solves.** Red-team findings get written inconsistently and
+drift away from recognized frameworks. This skill is one catalog where every
+technique is pre-mapped to MITRE ATT&CK, MITRE ATLAS, OWASP, OWASP LLM Top 10,
+and NIST AI RMF — plus a zero-build web UI to filter, map, and export a
+findings draft in minutes.
+
+**60-second quickstart.**
+```bash
+git clone https://github.com/sam00/AI-RedTeam-skill.git
+cd AI-RedTeam-skill
+python3 -m http.server 8080      # then open http://localhost:8080/ui/
+```
+No install? **[Try the live demo →](https://sam00.github.io/AI-RedTeam-skill/ui/)**
+
+**Example output.** Pick a domain (e.g. *AI / LLM Security*) and a technique;
+the UI shows its framework mappings, a remediation recommendation, and a
+credible reference, then exports a Markdown findings draft you paste straight
+into your report. (See the UI screenshot above.)
+
+**Who it's for.** Red teamers, penetration testers, AI red teamers / AI
+assurance engineers, and blue teamers who want a shared framework vocabulary.
+
+**What it is *not*.** Not a scanner and not an exploit kit — it does **not**
+touch, probe, or attack any system. It is documentation, planning, and
+reporting material for **authorized** engagements only.
 
 ---
 
@@ -160,6 +192,13 @@ penetration tests, red team engagements, and AI assurance — conducted with
 explicit written permission. Misuse against systems you do not own or lack
 authorization to test may be illegal. Contributors and maintainers assume no
 liability for misuse. See [SECURITY & ethics notes in `CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## Related projects
+
+Part of a small suite of local-first AI-security tools:
+
+- **[AI-RedEye-harness](https://github.com/sam00/AI-RedEye-harness)** — Agentic SAST harness for AI-assisted vulnerability discovery with grounding, voting, SARIF, and CI/CD workflows.
+- **[AI-TokenTrim](https://github.com/sam00/AI-TokenTrim)** — Local-first context compression for AI agents: cut LLM tokens, cost, and latency with reversible caching and MCP/proxy support.
 
 ## License
 
