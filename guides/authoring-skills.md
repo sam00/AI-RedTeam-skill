@@ -21,7 +21,7 @@ The assistant reads `SKILL.md` first and pulls in other files **only as needed**
 name: ai-redteam            # kebab-case, unique
 description: >-             # WHAT it does + WHEN to use it (this drives invocation)
   One or two sentences describing the skill and the trigger conditions.
-license: MIT
+license: Apache-2.0
 ---
 ```
 - `description` is the most important line: write it so the agent knows *exactly

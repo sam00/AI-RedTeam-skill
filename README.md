@@ -202,4 +202,4 @@ Part of a small suite of local-first AI-security tools:
 
 ## License
 
-[MIT](LICENSE)
+Apache-2.0 — see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE).

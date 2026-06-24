@@ -26,7 +26,7 @@ All notable changes to this project are documented here. The format is based on
 - **Recommendations** — remediation playbook with a finding template, and a
   credible references list.
 - **Project docs** — README with screenshot, `SECURITY.md`, `CONTRIBUTING.md`,
-  MIT `LICENSE`, and a GitHub CI check that validates JSON and JS syntax.
+  Apache-2.0 `LICENSE`, and a GitHub CI check that validates JSON and JS syntax.
 
 ### Security
 - Repository contains documentation only — no exploit code, secrets, or

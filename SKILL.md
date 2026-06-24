@@ -9,7 +9,7 @@ description: >-
   ATLAS, OWASP Top 10, OWASP LLM Top 10, and NIST AI RMF, with recommended
   tools and remediation guidance plus credible references. Documentation and
   planning only — this skill never executes attacks, scans, or exploits.
-license: MIT
+license: Apache-2.0
 ---
 
 # AI Red Team Skill
